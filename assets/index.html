@@ -4,17 +4,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
     <script src="/assets/js/medal.js"></script>
     <script src="/assets/underscore-min.js"></script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
+
   <body>
-    <h2>Medals</h2>
-    <div ng-controller="MedalCtrl">
-      <input type="text" ng-model="filter" size="30" placeholder="Search" />
-
-      <div ng-repeat='competitor in filteredCompetitors()'>
-        <div> {{competitor.name}} : {{competitor.score}} </div>
-        
+    <div class="container theme-showcase" role="main">
+      <div class="page-header">
+        <h1>Medal Count</h1>
       </div>
+      <div class="well">
+        <div ng-controller="MedalCtrl" class="">
+          <div class="input-group">
+              <span class="input-group-addon">?</span>
+              <input type="text" class="form-control" ng-model="filter" size="30" placeholder="Search Country Name" />
+              <span class="input-group-addon">#</span>
+              <input type="number" class="form-control" ng-model="minScore" size="30" placeholder="Minimum Score" />
+          </div>
 
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Country</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat='competitor in filteredCompetitors()'>
+                <td>{{competitor.rank}}</td><td>{{competitor.name}}</td><td> {{competitor.score}} </td>
+                
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -1,9 +1,9 @@
 function MedalCtrl($scope, $http) {
   $scope.competitors = [
-    {name:'Canada', score:500},
-    {name:'US', score:3}];
+     {name:'Loading...', score:'Loading...', rank:'Loading...'}];
 
   $scope.filter = '';
+  $scope.minScore = 0;
 
   $scope.getMedals = function() {
    $http({method: 'GET', url: '/scores'}).
@@ -16,14 +16,26 @@ function MedalCtrl($scope, $http) {
   }
 
   $scope.filteredCompetitors = function() {
+
+    
     if ($scope.filter == ''){
-      return $scope.competitors;
-    }
-    filtered = _.filter($scope.competitors, function(x) {
+      nameFiltered = $scope.competitors
+    }else{
+      nameFiltered = _.filter($scope.competitors, function(x) {
           var country = x.name.toLowerCase();
           return country.indexOf($scope.filter.toLowerCase()) != -1;
+      })
+    }
 
-        })
+    if ($scope.minScore){
+      filtered = _.filter(nameFiltered, function(x) {
+          return x.score >= $scope.minScore;
+      })
+    }
+    else{
+      filtered = $scope.competitors;
+    }
+
     return filtered;
   }
 
