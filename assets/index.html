@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+    <script src="/assets/js/medal.js"></script>
+    <script src="/assets/underscore-min.js"></script>
+  </head>
+  <body>
+    <h2>Medals</h2>
+    <div ng-controller="MedalCtrl">
+      <input type="text" ng-model="filter" size="30" placeholder="Search" />
+
+      <div ng-repeat='competitor in filteredCompetitors()'>
+        <div> {{competitor.name}} : {{competitor.score}} </div>
+        
+      </div>
+
+    </div>
+  </body>
+</html>
