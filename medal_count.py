@@ -3,22 +3,21 @@ import json
 import os
 import routes
 import urllib2
-from country_codes import country_codes
+from country_codes import codes
 
 class Core:
   def scores(self):
     data = eval(urllib2.urlopen("http://olympics.clearlytech.com/api/v1/medals").readline())
 
-    countryScores = []
     
-
+    countryScores = []
     for line in data:
       country = line['country_name']
       gold = line['gold_count']
       silver = line['silver_count']
       bronze = line['bronze_count']
-      code = ''
       country_key = country.lower()
+
 
       gold_weight = 5
       silver_weight = 3
@@ -26,7 +25,12 @@ class Core:
 
 
       score = gold*gold_weight+silver*silver_weight+bronze*bronze_weight
-      countryScore = {'name':country,'score':score, 'code':code}
+      if (country_key in codes):
+        countryCode = codes[country_key]
+      else:
+        countryCode = "zz"
+        
+      countryScore = {'name':country,'score':score, 'code':countryCode}
       countryScores.append(countryScore)
 
     countryScores = sorted(countryScores, key=lambda x: -x['score'])

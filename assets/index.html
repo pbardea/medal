@@ -6,6 +6,7 @@
     <script src="/assets/underscore-min.js"></script>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/flag-icon.css" rel="stylesheet">
   </head>
 
   <body>
@@ -32,7 +33,7 @@
             </thead>
             <tbody>
               <tr ng-repeat='competitor in filteredCompetitors()'>
-                <td>{{competitor.rank}}</td><td>{{competitor.name}}</td><td> {{competitor.score}} </td>
+                <td>{{competitor.rank}}{{competitor.code}}</td><td><span class="flag-icon flag-icon-{{competitor.code}}"></span> {{competitor.name}}</td><td> {{competitor.score}} </td>
                 
               </tr>
             </tbody>
