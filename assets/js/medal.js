@@ -17,7 +17,6 @@ function MedalCtrl($scope, $http) {
 
   $scope.filteredCompetitors = function() {
 
-    
     if ($scope.filter == ''){
       nameFiltered = $scope.competitors
     }else{
@@ -33,7 +32,7 @@ function MedalCtrl($scope, $http) {
       })
     }
     else{
-      filtered = $scope.competitors;
+      filtered = nameFiltered;
     }
 
     return filtered;
