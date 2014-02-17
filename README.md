@@ -1,4 +1,4 @@
-medal count
+#medal count
 
 - Organizes countries participating in the Olympic Games with a weighted medal count.
 
